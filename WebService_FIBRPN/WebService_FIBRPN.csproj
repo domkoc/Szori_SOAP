@@ -15,12 +15,12 @@
     <PackageReference Include="System.ServiceModel.Federation" Version="4.10.*" />
   </ItemGroup>
 	<Target Name="SvcUtilUpdate" BeforeTargets="SvcUtilNew" Inputs="wsdl\SeatReservation.wsdl;wsdl\SeatReservation.xsd" Outputs="ServiceReference\Reference.cs" Condition="Exists('ServiceReference\Reference.cs')">
-      <Exec Command='dotnet svcutil --update ServiceReference'/>
+      <Exec Command="dotnet svcutil --update ServiceReference" />
 	</Target>  
 	<Target Name="SvcUtilNew" BeforeTargets="BeforeBuild" Inputs="wsdl\SeatReservation.wsdl;wsdl\SeatReservation.xsd" Outputs="ServiceReference\Reference.cs" Condition="!Exists('ServiceReference\Reference.cs')">
-	  <Exec Command='dotnet svcutil --roll-forward LatestMajor --namespace "*,SeatReservation" wsdl\*.wsdl'/>
+	  <Exec Command="dotnet svcutil --roll-forward LatestMajor --namespace &quot;*,SeatReservation&quot; wsdl\*.wsdl" />
 	  <ItemGroup>
-		<Compile Include="ServiceReference\Reference.cs"/>
+		<Compile Include="ServiceReference\Reference.cs" />
 	  </ItemGroup>
 	</Target>
 </Project>

@@ -15,11 +15,11 @@
     <PackageReference Include="System.ServiceModel.Security" Version="4.10.*" />
     <PackageReference Include="System.ServiceModel.Federation" Version="4.10.*" />
   </ItemGroup>
-	<Target Name="SvcUtilUpdate" BeforeTargets="SvcUtilNew" Inputs="wsdl\SeatReservation.wsdl;wsdl\SeatReservation.xsd" Outputs="ServiceReference\Reference.cs" Condition="Exists('ServiceReference\Reference.cs')">
+	<Target Name="SvcUtilUpdate" BeforeTargets="SvcUtilNew" Inputs="wsdl\HelloNs.wsdl;wsdl\HelloNs.xsd" Outputs="ServiceReference\Reference.cs" Condition="Exists('ServiceReference\Reference.cs')">
       <Exec Command="dotnet svcutil --update ServiceReference" />
 	</Target>  
-	<Target Name="SvcUtilNew" BeforeTargets="BeforeBuild" Inputs="wsdl\SeatReservation.wsdl;wsdl\SeatReservation.xsd" Outputs="ServiceReference\Reference.cs" Condition="!Exists('ServiceReference\Reference.cs')">
-	  <Exec Command="dotnet svcutil --roll-forward LatestMajor --namespace &quot;*,SeatReservation&quot; wsdl\*.wsdl" />
+	<Target Name="SvcUtilNew" BeforeTargets="BeforeBuild" Inputs="wsdl\HelloNs.wsdl;wsdl\HelloNs.xsd" Outputs="ServiceReference\Reference.cs" Condition="!Exists('ServiceReference\Reference.cs')">
+	  <Exec Command="dotnet svcutil --roll-forward LatestMajor --namespace &quot;*,HelloWsClient&quot; wsdl\*.wsdl" />
 	  <ItemGroup>
 		<Compile Include="ServiceReference\Reference.cs" />
 	  </ItemGroup>
